@@ -1,0 +1,73 @@
+﻿@page
+@model Coach.Areas.Admin.Pages.country.EditModel
+@{
+}
+
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Edit"]  @sharedResource["Country"]
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <br />
+                        <form id="form" method="post" enctype="multipart/form-data">
+                            @(Html.DevExtreme().Form<Coach.Models.Country>()
+        .FormData(Model.country)
+        .Items(items =>
+        {
+            
+            items.AddSimpleFor(m => m.CountryTlAr).IsRequired(true).Label(k => k.Text(sharedResource["TlAr"])).ColSpan(1);
+            items.AddSimpleFor(m => m.CountryTlEn).IsRequired(true).Label(k => k.Text(sharedResource["TlEn"]));
+            items.AddSimpleFor(m => m.CountryOrderIndex).IsRequired(true).Label(k => k.Text(sharedResource["Sort"]));
+            items.AddSimpleFor(m => m.CountryIsActive).Label(k => k.Text(sharedResource["IsActive"]));
+             items.AddSimple().Label(k => k.Text(sharedResource["Picture"])).Template(@<text>
+                        <div>
+                    <img width="250" height="250" src="/@Model.country.CountryPic" alt="country Picture"/>
+                </div>
+                            </text> );
+
+             items.AddSimpleFor(m => m.CountryPic).Label(k => k.Text(sharedResource["Picture"])).Template(@<text>
+
+
+                            @(Html.DevExtreme().FileUploader()
+                                        .Name("Photo")
+                                        .SelectButtonText(sharedResource["Change_Picture"])
+                                        .LabelText("")
+                                        .Accept("image/*")
+                                        .UploadMode(FileUploadMode.UseForm)
+                                        .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                                        .Height(70)
+
+                                                        )
+
+                            </text> );
+
+            items.AddButton()
+                        .ColSpan(3)
+                        .HorizontalAlignment(HorizontalAlignment.Right)
+                        .ButtonOptions(b => b.Text(sharedResource["Save"])
+                        .Type(ButtonType.Success)
+                        .UseSubmitBehavior(true)).CssClass("invers");
+        })
+)
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

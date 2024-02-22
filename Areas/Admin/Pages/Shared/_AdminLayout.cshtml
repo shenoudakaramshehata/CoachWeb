@@ -1,0 +1,255 @@
+﻿@using Microsoft.AspNetCore.Localization;
+
+
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from themesbrand.com/admiria/layouts/vertical/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Dec 2021 13:08:54 GMT -->
+<head>
+
+    @RenderSection("ExternalDependencies", false)
+    @{
+        if (!(User.Identity.IsAuthenticated && (User.IsInRole("Admin"))))
+        {
+
+            Context.Response.Redirect(Url.Content("~/identity/account/login?returnUrl=" + Context.Request.Path));
+        }
+
+
+    }
+    @*@{
+            if (!(User.Identity.IsAuthenticated && User.IsInRole("Admin")))
+            {
+
+                Context.Response.Redirect(Url.Content("~/identity/account/login?returnUrl="+ Context.Request.Path));
+            }
+    }*@
+    <meta charset="utf-8">
+    <title>Coach</title>
+    @*<link rel="icon"  href="Admin/assets/images/index.jpg">*@
+     <link rel="shortcut icon" href="~/Admin/assets/images/index.jpg" />
+    @*<link rel="icon" type="image/jpg" sizes="16x16" href="Admin/assets/images/index.jpg">*@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Coach Admin" name="description">
+    <meta content="Themesbrand" name="author">
+    
+    
+
+
+    @* add devextreme*@
+    @*<link href="~/Css/devextreme/bootstrap.css" rel="stylesheet" />*@
+    <link href="~/css/devextreme/dx.common.css" rel="stylesheet" />
+    <link href="~/css/devextreme/dx.light.css" rel="stylesheet" />
+    
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script type='text/javascript' src='https://knockoutjs.com/downloads/knockout-3.5.0.debug.js'>
+        </script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/jquery-ui-dist@1.12.1/jquery-ui.min.js'></script>
+
+  @*  <script src="~/Admin/lib/popper/js/popper.js"></script>*@
+
+  
+
+   @* <script src="~/js/devextreme/jquery.js"></script>*@
+    <script src="~/js/devextreme/bootstrap.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.mvc.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+   
+
+  
+    @* end devextreme*@
+
+
+    <!-- App favicon -->
+   @* <link rel="stylesheet" href="~/css/thirdparty.bundle.css" />
+    <script src="~/js/thirdparty.bundle.js"></script>
+*@
+
+   
+
+    @{
+        var locale = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>();
+        var BrowserCulture = locale.RequestCulture.UICulture.ToString();
+        //English
+        if (BrowserCulture == "en-US")
+        {
+            <style>
+                html {
+                    direction: ltr !important;
+                }
+
+                .invers {
+                    direction: rtl !important;
+                    text-align: right !important;
+                }
+            </style>
+
+
+
+            <link href="@Url.Content("~/Admin/assets/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+            <link href="@Url.Content("~/Admin/assets/css/icons.min.css")" rel="stylesheet" type="text/css" />
+            <link href="@Url.Content("~/Admin/assets/css/app.min.css")" rel="stylesheet" type="text/css" />
+
+
+        }
+        //Arabic
+        else
+        {
+          
+            <style>
+                html {
+                    direction: rtl !important;
+                }
+
+                .invers {
+                    direction: ltr !important;
+                    text-align: left !important;
+                }
+            </style>
+
+            <link href="@Url.Content("~/Admin/assets/css/bootstrap-rtl.min.css")" rel="stylesheet" type="text/css" />
+            <link href="@Url.Content("~/Admin/assets/css/icons.min.css")" rel="stylesheet" type="text/css" />
+            <link href="@Url.Content("~/Admin/assets/css/app-rtl.min.css")" rel="stylesheet" type="text/css" />
+
+        }
+
+    }
+
+    <style>
+        .DeleteValidation {
+            text-align: center;
+            font-size: 25px;
+        }
+        .Details_img {
+            width: 151px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            padding: 9px;
+        }
+
+        td {
+            text-align: center !important;
+        }
+
+        .justify-content-between div:first-child {
+            width: 60%;
+        }
+    </style>
+    <link href="~/Admin/assets/css/custom.css" rel="stylesheet" />
+
+
+</head>
+
+<body data-sidebar="dark">
+
+
+    <!-- Loader -->
+    <div id="preloader"><div id="status"><div class="spinner"></div></div></div>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+
+        <!-- Header -->
+        @await Html.PartialAsync("_AdminHeader")
+        <!-- End Header -->
+        <!-- Sidebar Nav -->
+        @await Html.PartialAsync("_AdminSideNav")
+
+        <!-- End Sidebar Nav -->
+
+        <div class="main-content">
+
+            @RenderBody()
+            <!-- End Page-content -->
+            @await Html.PartialAsync("_AdminFooter")
+
+
+
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+    <!-- Right Sidebar -->
+    <div class="right-bar">
+        <div data-simplebar class="h-100">
+            <div class="rightbar-title px-3 py-4">
+                <a href="javascript:void(0);" class="right-bar-toggle float-end">
+                    <i class="mdi mdi-close noti-icon"></i>
+                </a>
+                <h5 class="m-0">Settings</h5>
+            </div>
+
+            <!-- Settings -->
+            <hr class="mt-0">
+            <h6 class="text-center mb-0">Choose Layouts</h6>
+
+            <div class="p-4">
+                <div class="mb-2">
+                    <img src="~/Admin/assets/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail" alt="Layouts-1">
+                </div>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch">
+                    <label class="form-check-label" for="light-mode-switch">Light Mode</label>
+                </div>
+
+                <div class="mb-2">
+                    <img src="~/Admin/assets/images/layouts/layout-2.jpg" class="img-fluid img-thumbnail" alt="Layouts-2">
+                </div>
+
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch" data-bsStyle="~/Admin/assets/css/bootstrap-dark.min.css" data-appStyle="~/Admin/assets/css/app-dark.min.css">
+                    <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
+                </div>
+
+                <div class="mb-2">
+                    <img src="~/Admin/assets/images/layouts/layout-3.jpg" class="img-fluid img-thumbnail" alt="Layouts-3">
+                </div>
+
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch" data-appStyle="~/Admin/assets/css/app-rtl.min.css">
+                    <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
+                </div>
+
+
+            </div>
+
+        </div> <!-- end slimscroll-menu-->
+    </div>
+    <!-- /Right-bar -->
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Admin/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="~/Admin/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="~/Admin/assets/libs/node-waves/waves.min.js"></script>
+    <!-- Datatable init js -->
+    <script src="~/Admin/assets/js/pages/datatables.init.js"></script>
+    <script src="~/Admin/assets/js/app.js"></script>
+
+
+
+    @await Component.InvokeAsync("NToastNotify")
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+<!-- Mirrored from themesbrand.com/admiria/layouts/vertical/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Dec 2021 13:09:27 GMT -->
+</html>

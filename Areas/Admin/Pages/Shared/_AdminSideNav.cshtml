@@ -1,0 +1,180 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+
+
+
+}
+
+<!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
+
+    <div data-simplebar class="h-100">
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <li class="menu-title"></li>
+                 
+                     <li>
+                    <a href="/Admin/Index" class="waves-effect">
+                        <span class="badge rounded-pill bg-primary float-end"></span>
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["Dashboard"] </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Admin/Sections" class="waves-effect">
+                        <span class="badge rounded-pill bg-primary float-end"></span>
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["Sections"] </span>
+                    </a>
+                </li>
+                  <li>
+                    <a href="javascript: void(0);" class="waves-effect" aria-expanded="false">
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["Trainers Configuration"]</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false" >
+                        <li><a href="/Admin/Trainers">@sharedResource["Trainers"]</a></li>
+                        <li><a href="/Admin/CourseTargets">@sharedResource["CourseTargets"]</a></li>
+                    </ul>
+                </li>
+               
+                 <li>
+                    <a href="javascript: void(0);" class="waves-effect" aria-expanded="false">
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["Camps Configuration"]</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false" >
+                        <li><a href="/Admin/Camps">@sharedResource["Camps"]</a></li>
+                        <li><a href="/Admin/CampTargets">@sharedResource["CampTarget"]</a></li>
+                        <li><a href="/Admin/CampTypes">@sharedResource["CampType"]</a></li>
+
+                    </ul>
+                </li>
+                    <li>
+                    <a href="javascript: void(0);" class="waves-effect" aria-expanded="false">
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["Tournaments Configuration"]</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false" >
+                        <li><a href="/Admin/Tournaments">@sharedResource["Tournaments"]</a></li>
+                        <li><a href="/Admin/TournamentTargets">@sharedResource["TournamentTarget"]</a></li>
+                        <li><a href="/Admin/TournamentTypes">@sharedResource["TournamentType"]</a></li>
+                  
+
+                    </ul>
+                </li>
+               
+                <li>
+                    <a href="javascript: void(0);" class="waves-effect" aria-expanded="false">
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["Plans"]</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false" >
+                        <li><a href="/Admin/CampPlans">@sharedResource["Camp Plans"]</a></li>
+                        <li><a href="/Admin/TournamentPlans">@sharedResource["Tournament Plans"]</a></li>
+                        <li><a href="/Admin/TrainerPlans">@sharedResource["Trainer Plans"]</a></li>
+
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="/Admin/Subscriptions" class="waves-effect">
+                        <span class="badge rounded-pill bg-primary float-end"></span>
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["Subscriptions"] </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Admin/Countries" class="waves-effect">
+                        <span class="badge rounded-pill bg-primary float-end"></span>
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["Countries"] </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Admin/Banners" class="waves-effect">
+                        <span class="badge rounded-pill bg-primary float-end"></span>
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["Banners"] </span>
+                    </a>
+                </li> <li>
+                    <a href="/Admin/Advertisements" class="waves-effect">
+                        <span class="badge rounded-pill bg-primary float-end"></span>
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["Adzs"] </span>
+                    </a>
+                </li>
+
+                 <li>
+                    <a href="/Admin/PublicNotifications" class="waves-effect">
+                        <span class="badge rounded-pill bg-primary float-end"></span>
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["PublicNotification"] </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/Admin/NewsletterList" class="waves-effect">
+                        <span class="badge rounded-pill bg-primary float-end"></span>
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["Newsletter"] </span>
+                    </a>
+                </li>
+                 <li>
+                    <a href="/Admin/Payment/PaymentMethods" class="waves-effect">
+                        <span class="badge rounded-pill bg-primary float-end"></span>
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["Payment Methods"] </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/Admin/ClientsMessages" class="waves-effect">
+                        <span class="badge rounded-pill bg-primary float-end"></span>
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["clientsMessages"] </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="waves-effect" aria-expanded="false">
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["Reports"]</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false" >
+                        <li><a href="/Admin/ReportsPages/CampRevenuReport">@sharedResource["Camp Revenue"]</a></li>
+                        <li><a href="/Admin/ReportsPages/TournmentRevenuReport">@sharedResource["Tournment Revenue"]</a></li>
+                        <li><a href="/Admin/ReportsPages/TrainerSubReport">@sharedResource["Trainer Subscription Revenue"]</a></li>
+                        <li><a href="/Admin/ReportsPages/SubscribedCoursesRevenues">@sharedResource["Course Subscription Revenue"]</a></li>
+                         <li><a href="/Admin/ReportsPages/SubscribedCampRevenue">@sharedResource["Camp Subscription Revenue"]</a></li>
+                        <li><a href="/Admin/ReportsPages/SubscribedTournamentRevenue">@sharedResource["Tournament Subscription Revenue"]</a></li>
+
+                        
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="waves-effect" aria-expanded="false">
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> @sharedResource["SystemConfigration"] </span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false" style="height: 0px;">
+                        <li><a href="/Admin/SystemConfigration/ContactsInfo">@sharedResource["ContactsInfo"]</a></li>
+                        <li><a href="/Admin/SystemConfigration/FAQList">@sharedResource["FAQList"]</a></li>
+                        <li><a href="/Admin/SystemConfigration/PagesContent">@sharedResource["PagesContent"]</a></li>
+
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+<!-- Left Sidebar End -->   

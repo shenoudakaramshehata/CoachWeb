@@ -1,0 +1,234 @@
+﻿@page
+@model Coach.Areas.Admin.Pages.Advertisements.AddModel
+@{
+}
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Add"]  @sharedResource["Adz"]
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="form" method="post" enctype="multipart/form-data">
+                            @Html.Hidden("CampId", "")
+                            @Html.Hidden("CourseId", "")
+                            @Html.Hidden("TournamentId", "")
+                            @Html.Hidden("TrainerId", "")
+                            @(Html.DevExtreme().Form<Coach.Models.Adz>()
+
+    .ID("AdzForm")
+     .OnInitialized("onFormInitialized")
+
+.Items(items => {
+
+items.AddSimpleFor(m => m.CountryId).IsRequired(true).Label(k => k.Text(sharedResource["Country"]))
+           .Editor(e => e
+               .Lookup()
+               .DataSource(ds => ds.WebApi().Controller("Adzs").LoadAction("CountryLookup").Key("Value"))
+               .ValueExpr("Value")
+               .DisplayExpr("Text")
+                .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                 .Placeholder(sharedResource["Select"])
+                                                        .ShowClearButton(true)
+                                                        .ClearButtonText(sharedResource["Clear"])
+                                                        .CancelButtonText(sharedResource["Cancel"])
+                                                        .SearchPlaceholder(sharedResource["searching"])
+           );
+
+items.AddSimpleFor(m => m.EntityTypeId).IsRequired(true).Label(k => k.Text(sharedResource["Type"]))
+        .Editor(e => e
+            .Lookup()
+            .DataSource(ds => ds.WebApi().Controller("Adzs").LoadAction("EntityTypeLookup").Key("Value"))
+            .ValueExpr("Value")
+            .DisplayExpr("Text")
+             .OnValueChanged("onValueChanged")
+                 .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                  .Placeholder(sharedResource["Select"])
+                                                        .ShowClearButton(true)
+                                                        .ClearButtonText(sharedResource["Clear"])
+                                                        .CancelButtonText(sharedResource["Cancel"])
+                                                        .SearchPlaceholder(sharedResource["searching"])
+             );
+
+
+
+items.AddSimple()
+        .Editor(e => e
+            .Lookup()
+             .DataSource(ds => ds.WebApi().Controller("Adzs").LoadAction("TrainerLookup").Key("Value"))
+      .DisplayExpr("Text")
+        .ValueExpr("Value")
+  .OnSelectionChanged("TrainerValueChanged")
+                 .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                  .Placeholder(sharedResource["Select"])
+                                                        .ShowClearButton(true)
+                                                        .ClearButtonText(sharedResource["Clear"])
+                                                        .CancelButtonText(sharedResource["Cancel"])
+                                                        .SearchPlaceholder(sharedResource["searching"])
+             ).Label(k => k.Text(sharedResource["Trainer"])).Name("Trainer").Visible(false).IsRequired(true);
+
+items.AddSimple()
+        .Editor(e => e
+            .Lookup()
+             .DataSource(ds => ds.WebApi().Controller("Adzs").LoadAction("CampLookup").Key("Value"))
+      .DisplayExpr("Text")
+        .ValueExpr("Value")
+  .OnSelectionChanged("CampValueChanged")
+                 .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                  .Placeholder(sharedResource["Select"])
+                                                        .ShowClearButton(true)
+                                                        .ClearButtonText(sharedResource["Clear"])
+                                                        .CancelButtonText(sharedResource["Cancel"])
+                                                        .SearchPlaceholder(sharedResource["searching"])
+             ).Label(k => k.Text(sharedResource["Camp"])).Name("Camp").Visible(false).IsRequired(true);
+
+items.AddSimple()
+        .Editor(e => e
+            .Lookup()
+             .DataSource(ds => ds.WebApi().Controller("Adzs").LoadAction("TournamentLookup").Key("Value"))
+      .DisplayExpr("Text")
+        .ValueExpr("Value")
+  .OnSelectionChanged("TournamentValueChanged")
+                 .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                  .Placeholder(sharedResource["Select"])
+                                                        .ShowClearButton(true)
+                                                        .ClearButtonText(sharedResource["Clear"])
+                                                        .CancelButtonText(sharedResource["Cancel"])
+                                                        .SearchPlaceholder(sharedResource["searching"])
+             ).Label(k => k.Text(sharedResource["Tournament"])).Name("Tournament").Visible(false).IsRequired(true);
+items.AddSimple()
+        .Editor(e => e
+            .Lookup()
+             .DataSource(ds => ds.WebApi().Controller("Adzs").LoadAction("CourseLookup").Key("Value"))
+      .DisplayExpr("Text")
+        .ValueExpr("Value")
+  .OnSelectionChanged("CourseValueChanged")
+                 .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                  .Placeholder(sharedResource["Select"])
+                                                        .ShowClearButton(true)
+                                                        .ClearButtonText(sharedResource["Clear"])
+                                                        .CancelButtonText(sharedResource["Cancel"])
+                                                        .SearchPlaceholder(sharedResource["searching"])
+             ).Label(k => k.Text(sharedResource["Course"])).Name("Course").Visible(false).IsRequired(true);
+
+
+
+
+items.AddSimpleFor(m => m.EntityId).Visible(false).Name("URL").Label(k => k.Text(sharedResource["ExternalURL"])).IsRequired(true);
+items.AddSimpleFor(m => m.AdzOrderIndex).Label(k => k.Text(sharedResource["Sort"])).IsRequired(true).Editor(e=>e.NumberBox().Value(null).Min(1));
+items.AddSimpleFor(m => m.AdzIsActive).Label(k => k.Text(sharedResource["IsActive"]));
+
+items.AddSimpleFor(m => m.AdzPic).IsRequired(true).Label(k => k.Text(sharedResource["Picture"])).Template(@<text>
+                            @(Html.DevExtreme().FileUploader()
+                                        .Name("Photo")
+                                        .SelectButtonText(sharedResource["Select_photo"])
+                                        .LabelText("")
+                                        .Accept("image/*")
+                                        .UploadMode(FileUploadMode.UseForm)
+                                        .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                                        .Height(70)
+                               )
+
+                            </text> ).IsRequired(true);
+    items.AddButton()
+  .ColSpan(3)
+  .HorizontalAlignment(HorizontalAlignment.Right)
+  .ButtonOptions(b => b.Text(sharedResource["Save"])
+  .Type(ButtonType.Success)
+  .UseSubmitBehavior(true)).CssClass("invers");
+
+
+
+})
+                            )
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var form
+    function onFormInitialized(e) {
+        form = e.component;
+    }
+
+
+   function CampValueChanged(data) {
+        if(data.selectedItem!=null){
+            $("#CampId").val(data.selectedItem.Value);
+        }
+        
+    }
+
+    function TournamentValueChanged(data) {
+         if(data.selectedItem!=null){
+          $("#TournamentId").val(data.selectedItem.Value);
+        }
+        
+    }
+
+    function CourseValueChanged(data) {
+           if(data.selectedItem!=null){
+          $("#CourseId").val(data.selectedItem.Value);
+        }
+       
+    }
+
+    function TrainerValueChanged(data) {
+             if(data.selectedItem!=null){
+         $("#TrainerId").val(data.selectedItem.Value);
+        }
+        
+    }
+    function onValueChanged(e) {
+
+        if (e.value === 1) {
+            form.itemOption("Trainer", "visible", true);
+            form.itemOption("Camp", "visible", false);
+            form.itemOption("Tournament", "visible", false);
+            form.itemOption("Course", "visible", false);
+            form.itemOption("URL", "visible", false);
+        }
+        if (e.value === 2) {
+            form.itemOption("Trainer", "visible", false);
+            form.itemOption("Camp", "visible", true);
+            form.itemOption("Tournament", "visible", false);
+            form.itemOption("Course", "visible", false);
+            form.itemOption("URL", "visible", false);
+        }
+
+        if (e.value === 3) {
+            form.itemOption("Trainer", "visible", false);
+            form.itemOption("Camp", "visible", false);
+            form.itemOption("Tournament", "visible", true);
+            form.itemOption("Course", "visible", false);
+            form.itemOption("URL", "visible", false);
+        } if (e.value === 4) {
+            form.itemOption("Trainer", "visible", false);
+            form.itemOption("Camp", "visible", false);
+            form.itemOption("Tournament", "visible", false);
+            form.itemOption("Course", "visible", true);
+            form.itemOption("URL", "visible", false);
+        }
+        if (e.value === 5) {
+            form.itemOption("Trainer", "visible", false);
+            form.itemOption("Camp", "visible", false);
+            form.itemOption("Tournament", "visible", false);
+            form.itemOption("Course", "visible", false);
+            form.itemOption("URL", "visible", true);
+        }
+
+
+
+    }
+
+
+</script>

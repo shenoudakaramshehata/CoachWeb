@@ -1,0 +1,64 @@
+﻿@page
+@model Coach.Pages.TermesOfServicesModel
+
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Localization
+
+@{
+    ViewData["Title"] = "Termes Of Services";
+ 
+}
+
+@{
+
+          //English
+        if (Model.BrowserCulture == "en-US")
+        {
+         
+            
+<div class="hero hero-1 feature-section feature-section-0">
+    <div class="hero-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 offset-lg-0  ">
+                    <div class="hero-image">
+                    @Html.Raw(@Model.ContentEn)
+
+                    </div>
+                </div>
+            
+            </div>
+
+        </div>
+    </div>
+</div>
+
+        }
+        //Arabic
+        else
+        {
+         
+       
+              
+<div class="hero hero-1 feature-section feature-section-0">
+    <div class="hero-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 offset-lg-0  ">
+                    <div class="hero-image">
+                    @Html.Raw(@Model.ContentAr)
+
+                    </div>
+                </div>
+            
+            </div>
+
+        </div>
+    </div>
+</div>
+                
+  
+
+        }
+
+    }

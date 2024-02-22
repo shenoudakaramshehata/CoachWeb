@@ -1,0 +1,91 @@
+﻿@page
+@model Coach.Areas.Admin.Pages.Subscriptions.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Details"]
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h4>@sharedResource["Details"] </h4>
+                            <hr />
+                            <dl class="row">
+                                <dt class="col-sm-2">
+                                    @sharedResource["User"]
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.user.Email)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @sharedResource["Type"]
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.subscription.EntityType.EntityTypeTlar)
+                                </dd> <dt class="col-sm-2">
+                                    @sharedResource["Name"]
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.subscription.EntityName)
+                                </dd>
+                                @if(Model.subscription.SubDate!=null)
+                                {
+                                     <dt class="col-sm-2">
+                                    @sharedResource["Subscription Date"]
+                                </dt>
+                                <dd class="col-sm-10">
+                                  @Model.subscription.SubDate.Value.ToShortDateString()
+                                </dd> 
+                                }
+                              
+                                <dt class="col-sm-2">
+                                    @sharedResource["Cost"]
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.subscription.Cost)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @sharedResource["PaymentMethod"]
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.subscription.PaymentMethod.PaymentMethodTlar)
+                                </dd>
+
+                            </dl>
+
+                        </div>
+                         @{
+                                if (Model.subscription.PaymentMethodId==1&&Model.subscription.ispaid==false)
+                                {
+                                    <div class="row">
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Subscription Pay"] </h4>
+                                    <hr />
+                                    <div class="customer_info_container d-flex justify-content-between">
+                               
+                                <form id="form" method="post"  asp-route-id="@Model.subscription.SubscriptionId" enctype="multipart/form-data">      
+                                    <input type="submit" value="@sharedResource["pay"]" class="btn btn-primary">
+                                </form>        
+                                    </div>
+                                   </div>
+                               </div>
+                                }
+                            }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

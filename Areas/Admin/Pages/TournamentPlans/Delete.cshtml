@@ -1,0 +1,74 @@
+﻿@page
+@model Coach.Areas.Admin.Pages.TournamentPlans.DeleteModel
+@{
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Delete"]  @sharedResource["Tournament Plan"]
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+
+                        <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4>@sharedResource["Informations"] </h4>
+                                    <hr />
+
+                                    <div class="d-flex justify-content-between">
+                                        <div> @sharedResource["TlAr"] </div>
+                                        <div> @Model.plan.PlanTlAr </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.plan.PlanTlEn </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["IsActive"]  </div>
+
+                                        @Html.CheckBoxFor(m => m.plan.IsActive.Value, new { @disabled = "disabled" })
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["DurationInMonth"]  </div>
+                                        <div> @Model.plan.DurationInMonth </div>
+                                    </div>
+                                  <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Price"]  </div>
+                                        <div> @Model.plan.Price </div>
+                                    </div>
+                                  <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Country"]  </div>
+                                        <div> @Model.countryName</div>
+                                    </div>
+                                </div>
+
+                                <form method="post">
+                                    <div class="invers">
+                                        @(Html.DevExtreme().Button()
+                    .ID("button")
+                    .Text(sharedResource["Delete"])
+                    .Type(ButtonType.Danger)
+                    .UseSubmitBehavior(true)
+
+                    )
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

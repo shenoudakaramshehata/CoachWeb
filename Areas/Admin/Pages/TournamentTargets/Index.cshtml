@@ -1,0 +1,108 @@
+﻿@page
+@model Coach.Areas.Admin.Pages.TournamentTargets.IndexModel
+@{
+}
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["TournamentTarget"]
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        @(Html.DevExtreme().DataGrid<Coach.Models.TournamentTarget>()
+.DataSource(ds => ds.Mvc()
+.Controller("TournamentTargets")
+.LoadAction("Get")
+.InsertAction("Post")
+.UpdateAction("Put")
+.DeleteAction("Delete")
+.Key("TournamentTargetId")
+)
+.RemoteOperations(true)
+.Columns(columns => {
+    columns.AddFor(m => m.TournamentTargetTlAr).Caption(sharedResource["TlAr"]);
+    columns.AddFor(m => m.TournamentTargetTlEn).Caption(sharedResource["TlEn"]);
+    columns.AddFor(m => m.IsActive).Caption(sharedResource["IsActive"]);
+}
+
+)
+
+.Editing(e => e.Mode(GridEditMode.Popup)
+.Texts(c => c
+.CancelRowChanges(sharedResource["Cancel"])
+.SaveRowChanges(sharedResource["Save"]).EditRow(sharedResource["Edit"])
+.DeleteRow(sharedResource["Delete"])
+.ConfirmDeleteMessage(sharedResource["ConfirmDeleteMessage"])
+.AddRow(sharedResource["Add"]))
+
+
+.AllowUpdating(true)
+.AllowDeleting(true)
+
+.AllowAdding(true)
+.UseIcons(true)
+
+
+.Popup(p => p
+.Title(sharedResource["TournamentTarget"])
+.ShowTitle(true)
+.MaxWidth(750)
+.RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+
+
+.Height(250)).Form(f => f.Items(items =>
+{
+    items.AddGroup()
+    .ColCount(2)
+    .ColSpan(2)
+    .Items(groupItems =>
+    {
+        groupItems.AddSimple().DataField("TournamentTargetTlAr").IsRequired(true);
+        groupItems.AddSimple().DataField("TournamentTargetTlEn").IsRequired(true);
+        groupItems.AddSimple().DataField("IsActive");
+
+
+    });
+
+
+
+}))
+
+)
+    .Paging(paging => paging.PageSize(10))
+                        .Pager(pager =>
+                        {
+                            pager.Visible(true);
+                            pager.DisplayMode(GridPagerDisplayMode.Full);
+                            pager.ShowPageSizeSelector(true);
+                            pager.AllowedPageSizes(new JS("[5, 10, 'all']"));
+                            pager.ShowInfo(true);
+                            pager.ShowNavigationButtons(true);
+
+                        })
+        .HeaderFilter(headerFilter => headerFilter.Visible(true)).ShowColumnLines(false)
+                            .ShowRowLines(true)
+                            .RowAlternationEnabled(true)
+                            .AllowColumnReordering(true)
+                            .ShowRowLines(true)
+                            .ShowColumnLines(true)
+                            .ShowBorders(true)
+                            .SearchPanel(searchPanel => searchPanel
+                            .Visible(true)
+                            .Width(240)
+                            .Placeholder(sharedResource["SearchTxt"]))
+                            .RemoteOperations(true)
+                            .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+)
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Http
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{ Layout = null;
+    string backendUploadURL = "https://" + Context.Request.Host +"/";
+    }
+
+[%
+    editCellInfo = arguments[0]; // get all properties of editCellTemplate
+%]
+
+<script>
+    function onRetryButtonClick(e) {
+        const fileUploader = $("#fileUploader").dxFileUploader("instance");
+        for (let i = 0; i < fileUploader._files.length; i++) {
+            delete fileUploader._files[i].uploadStarted;
+        }
+        fileUploader.upload();
+    }
+    function onFileUploaderValueChanged(e) {
+        let reader = new FileReader();
+        let imageElement = $("#imgElement")[0];
+        reader.onload = function (args) {
+            imageElement.setAttribute('src', args.target.result);
+        }
+        reader.readAsDataURL(e.value[0]); // convert to base64 string
+    }
+    function onUploaded(e) {
+       // let retryButton = $("#retryButton").dxButton("instance");
+        //alert(e.request.responseText);
+        editCellInfo.setValue(e.request.responseText);
+       // retryButton.option("visible", false);
+    }
+    function onUploadError(e) {
+        let retryButton = $("#retryButton").dxButton("instance");
+        let xhttp = e.request;
+        if (xhttp.status === 400) {
+            e.message = e.error.responseText;
+        }
+        if (xhttp.readyState == 4 && xhttp.status == 0) {
+            e.message = "Connection refused";
+        }
+        retryButton.option("visible", true);
+    }
+</script>
+
+@(Html.DevExtreme().FileUploader()
+        .ID("fileUploader")
+        .Multiple(false)
+        .Accept("image/*")
+        .UploadMode(FileUploadMode.Instantly)
+        .UploadUrl(backendUploadURL + "FileUpload/post")
+        .OnValueChanged("function(e){onFileUploaderValueChanged(e)}")
+        .OnUploaded("function(e){onUploaded(e)}")
+        .OnUploadError("function(e){onUploadError(e)}")
+)
+
+<img id="imgElement" class="uploadedImage" src="[%- backendURL %][%- data.Pic %]" alt="Photo" width="70" />
+
+@(Html.DevExtreme().Button()
+        .ID("retryButton")
+        .Text("Retry")
+        .Visible(false)
+        .Type(ButtonType.Normal)
+        .OnClick("function(e){onRetryButtonClick(e)}")
+)

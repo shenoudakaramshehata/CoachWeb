@@ -1,0 +1,79 @@
+﻿@page
+@model Coach.Areas.Admin.Pages.ClientsMessages.IndexModel
+@{
+}
+<style>
+    td {
+        text-align: center !important;
+    }
+</style>
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["clientsMessages"]
+                        </h2>
+                    </div>
+                    <div class="card-body">
+
+                        @(Html.DevExtreme().DataGrid<Coach.Models.Contact>()
+                        .ID("gridContainer")
+
+                        .DataSource(ds => ds.Mvc()
+                        .Controller("Contacts")
+                        .LoadAction("Get")
+
+                        .Key("ContactId")
+                        )
+                        .Columns(columns => {
+
+
+                        columns.AddFor(m => m.Email).Caption(sharedResource["Email"]);
+                        columns.AddFor(m => m.FullName).Caption(sharedResource["Name"]);
+                        columns.AddFor(m => m.Msg).Caption(sharedResource["Message"]);
+                        columns.AddFor(m => m.Mobile).Caption(sharedResource["Phone"]);
+                              
+                             columns.Add().Caption(sharedResource["Actions"]).Width(200).Alignment(HorizontalAlignment.Center).CellTemplate(@<text>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-primary btn-sm"  href="/Admin/ClientsMessages/Details?id=<%- data.ContactId %>"> <i class="fas fa-eye"></i> </a>
+                        <a class="btn btn-danger btn-sm" href="/Admin/ClientsMessages/DeleteCustomerMsg?id=<%- data.ContactId %>">  <i class="fas fa-trash"></i> </a>
+
+                            </div>
+                            </text>).Width(200);
+                        })
+                          .Paging(paging => paging.PageSize(10))
+                        .Pager(pager =>
+                        {
+                            pager.Visible(true);
+                            pager.DisplayMode(GridPagerDisplayMode.Full);
+                            pager.ShowPageSizeSelector(true);
+                            pager.AllowedPageSizes(new JS("[5, 10, 'all']"));
+                            pager.ShowInfo(true);
+                            pager.ShowNavigationButtons(true);
+
+                        })
+                        .HeaderFilter(headerFilter => headerFilter.Visible(true)).ShowColumnLines(false)
+                        .ShowRowLines(true)
+                        .RowAlternationEnabled(true)
+                        .AllowColumnReordering(true)
+                        .ShowRowLines(true)
+                        .ShowColumnLines(true)
+
+                        .ShowBorders(true)
+                        .SearchPanel(searchPanel => searchPanel
+                        .Visible(true)
+                        .Width(240)
+                        .Placeholder(sharedResource["SearchTxt"]))
+                        .RemoteOperations(true)
+                        .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                                        )
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

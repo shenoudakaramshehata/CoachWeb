@@ -1,0 +1,262 @@
+﻿@page
+@model Coach.Areas.Admin.Pages.Camps.DetailsModel
+@{
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Details"]
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+
+                        <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Informations"] </h4>
+                                    <hr />
+
+                                    <div class="d-flex justify-content-between">
+                                        <div> @sharedResource["TlAr"] </div>
+                                        <div> @Model.camp.CampTlAr </div>
+                                    </div>
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.camp.CampTlAr </div>
+                                    </div>
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Cost"]  </div>
+                                        <div> @Model.camp.Cost </div>
+                                    </div>
+
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["IsActive"]  </div>
+                                        @Html.CheckBoxFor(m => m.camp.IsActive.Value, new { @disabled = "disabled" })
+
+                                    </div>
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Picture"]  </div>
+                                        <div class="Details_img">
+                                            <img style="border-radius: 13%;" class="img-fluid" src="~/@Model.camp.Pic" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Description"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["DescAr"]  </div>
+                                        <div> @Model.camp.CampDescAr </div>
+                                    </div>
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["DescEn"]  </div>
+                                        <div> @Model.camp.CampDescEn </div>
+                                    </div>
+                                    <br />
+                                    @if(@Model.camp.StartDate!=null){
+                                            <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Camp Start Date"]  </div>
+                                        <div> @Model.camp.StartDate.Value.ToShortDateString() </div>
+                                    </div>
+                                    }
+                                    <br />
+                                  @if(@Model.camp.EndDate!=null){
+                                         <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Camp End Date"]  </div>
+                                        <div> @Model.camp.EndDate.Value.ToShortDateString() </div>
+                                    </div>
+                                    }
+                                  
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Target"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlAr"]  </div>
+                                        <div> @Model.camp.CampTarget.CampTargetTlAr </div>
+                                    </div>
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.camp.CampTarget.CampTargetTlEn </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Type"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlAr"]  </div>
+                                        <div> @Model.camp.CampType.CampTypeTlAr </div>
+                                    </div>
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.camp.CampType.CampTypeTlEn</div>
+
+
+                                    </div>
+                                </div>
+                                @{
+                                    if (@Model.user != null)
+                                    {
+                                          <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["User"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Email"]  </div>
+                                        <div> @Model.user.Email </div>
+                                    </div>
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Mobile"]  </div>
+                                        <div> @Model.user.PhoneNumber </div>
+                                    </div>
+
+                                </div> 
+
+                                    }
+                                }
+                             
+
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Plan"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlAr"]  </div>
+                                        <div> @Model.camp.CampPlan.PlanTlAr </div>
+                                    </div>
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.camp.CampPlan.PlanTlEn</div>
+
+
+                                    </div>
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["DurationInMonth"]  </div>
+                                        <div> @Model.camp.CampPlan.DurationInMonth</div>
+
+
+                                    </div>
+                                    <br />
+                                    @if(@Model.camp.JoinStart!=null)
+                                    {
+                                     <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["StartDate"]  </div>
+                                        <div> @Model.camp.JoinStart.Value.ToShortDateString()</div>
+                                    </div>
+                                    }
+                                    <br />
+                                    @if(@Model.camp.JoinEnd!=null)
+                                    {
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["EndDate"]  </div>
+                                        <div> @Model.camp.JoinEnd.Value.ToShortDateString()</div>
+                                    </div>
+                                    }
+
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Price"]  </div>
+                                        <div> @Model.camp.SubPrice</div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-12 col-lg-12 mt-8">
+                                        <h4>@sharedResource["CampImages"] </h4>
+                                        <hr />
+
+                                        <div class="row" style="margin-top:25px" id="images_container">
+                                            <div class="col-12">
+
+                                                <div id="Camp_Images" class="d-flex justify-content-center align-items-center">
+                                                    <div class="loader">Loading...</div>
+                                                    <div class="message d-none">
+                                                        <img src="/Images/Camp/bafaadf3-5633-407a-97f7-b1b41b74345f.jpg" width="150" class="m-3">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        @{
+                                if (Model.camp.PaymentMethodId==1&&Model.camp.ispaid==false)
+                                {
+                                    <div class="row">
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Camp Pay"] </h4>
+                                    <hr />
+                                    <div class="customer_info_container d-flex justify-content-between">
+                               
+                                <form id="form" method="post"  asp-route-id="@Model.camp.CampId" enctype="multipart/form-data">      
+                                    <input type="submit" value="@sharedResource["pay"]" class="btn btn-primary">
+                                </form>        
+                                    </div>
+                                   </div>
+                               </div>
+                                }
+                            }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', (event) => {
+
+        fetch('http://' + location.host + '/Api/Camps/GetImages?id=' + window.location.search.split("=")[1])
+            .then(response => response.json())
+            .then(data => {
+
+                var Camp_Images = document.getElementById("Camp_Images");
+                document.getElementsByClassName("loader")[0].remove();
+
+
+                for (const property in data) {
+
+                    var img = document.createElement("img");
+                    img.src = "/" + data[property].Pic;
+                    img.width = 150;
+                    img.classList.add("m-3");
+                    var div = document.createElement("div");
+                    div.classList.add("position-relative");
+                    div.classList.add(data[property].CampImageId);
+                    div.appendChild(img);
+                    Camp_Images.appendChild(div);
+                }
+                if (data.length <= 0) {
+                    document.getElementsByClassName("message")[0].classList.remove("d-none");
+                }
+
+            });
+    });
+</script>

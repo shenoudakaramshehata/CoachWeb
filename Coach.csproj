@@ -1,0 +1,203 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-Coach-08598207-6256-448E-B750-A46599A0C125</UserSecretsId>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <PlatformTarget>x64</PlatformTarget>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\**" />
+    <Compile Remove="Controller\**" />
+    <Content Remove="Controllers\**" />
+    <Content Remove="Controller\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <EmbeddedResource Remove="Controller\**" />
+    <None Remove="Controllers\**" />
+    <None Remove="Controller\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Data\CoachContextOld.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Areas\Admin\Pages\ReportsPages\TournmentRevenuReport.cshtml" />
+    <Content Remove="Areas\Admin\Pages\Tournaments\Details.cshtml" />
+    <Content Remove="Areas\Admin\Pages\Tournaments\Index.cshtml" />
+    <Content Remove="Areas\Admin\Pages\TrainerPlans\Add.cshtml" />
+    <Content Remove="Areas\Admin\Pages\TrainerPlans\Delete.cshtml" />
+    <Content Remove="Areas\Admin\Pages\TrainerPlans\Details.cshtml" />
+    <Content Remove="Areas\Admin\Pages\TrainerPlans\Edit.cshtml" />
+    <Content Remove="Areas\Admin\Pages\TrainerPlans\Index.cshtml" />
+    <Content Remove="Areas\Admin\Pages\TournamentPlans\Add.cshtml" />
+    <Content Remove="Areas\Admin\Pages\TournamentPlans\Delete.cshtml" />
+    <Content Remove="Areas\Admin\Pages\TournamentPlans\Details.cshtml" />
+    <Content Remove="Areas\Admin\Pages\TournamentPlans\Edit.cshtml" />
+    <Content Remove="Areas\Admin\Pages\TournamentPlans\Index.cshtml" />
+    <Content Remove="Pages\successCoursePayment.cshtml" />
+    <Content Remove="Pages\TrainerPayFaield.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Resources\SharedResource.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AdzsController.cs" />
+    <Compile Include="Controllers\BannersController.cs" />
+    <Compile Include="Controllers\CampImagesController.cs" />
+    <Compile Include="Controllers\CampPlansController.cs" />
+    <Compile Include="Controllers\CampsController.cs" />
+    <Compile Include="Controllers\CampTargetsController.cs" />
+    <Compile Include="Controllers\CampTypesController.cs" />
+    <Compile Include="Controllers\ConfigurationsController.cs" />
+    <Compile Include="Controllers\ContactsController.cs" />
+    <Compile Include="Controllers\CountriesController.cs" />
+    <Compile Include="Controllers\CourseImagesController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\CourseTargetsController.cs" />
+    <Compile Include="Controllers\FAQsController.cs" />
+    <Compile Include="Controllers\LookupController.cs" />
+    <Compile Include="Controllers\MobileController.cs" />
+    <Compile Include="Controllers\NewslettersController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\PageContentsController.cs" />
+    <Compile Include="Controllers\PaymentMethodsController.cs" />
+    <Compile Include="Controllers\PublicDevicesController.cs" />
+    <Compile Include="Controllers\PublicNotificationsController.cs" />
+    <Compile Include="Controllers\ReportingController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
+    <Compile Include="Controllers\StatisticsController.cs" />
+    <Compile Include="Controllers\SubscriptionsController.cs" />
+    <Compile Include="Controllers\TournamentsController.cs" />
+    <Compile Include="Controllers\TournamentTargetsController.cs" />
+    <Compile Include="Controllers\TournamentTypesController.cs" />
+    <Compile Include="Controllers\TrainersController.cs" />
+    <Compile Include="Controllers\TrainerSubscriptionsController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="CorePush" Version="3.0.10" />
+    <PackageReference Include="DevExpress.AspNetCore.Reporting" Version="21.2.6" />
+    <PackageReference Include="DevExtreme.AspNet.Core" Version="21.2.6" />
+    <PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.2" />
+    <PackageReference Include="MailKit" Version="3.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.175" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NToastNotify" Version="7.0.0" />
+    <PackageReference Include="SendGrid" Version="9.25.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="wwwroot\Images\UserImages\" />
+    <Folder Include="wwwroot\Public\images\screens\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Areas\Admin\Pages\Advertisements\Add.cshtml" />
+    <None Include="Areas\Admin\Pages\Advertisements\Delete.cshtml" />
+    <None Include="Areas\Admin\Pages\Advertisements\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\Advertisements\Edit.cshtml" />
+    <None Include="Areas\Admin\Pages\Advertisements\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\Banners\Add.cshtml" />
+    <None Include="Areas\Admin\Pages\Banners\Delete.cshtml" />
+    <None Include="Areas\Admin\Pages\Banners\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\Banners\Edit.cshtml" />
+    <None Include="Areas\Admin\Pages\Banners\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\Camps\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\Camps\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\AdminProfile\ChangeAdminPassword.cshtml" />
+    <None Include="Areas\Admin\Pages\ClientsMessages\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\ClientsMessages\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\Courses\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\Courses\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\NewsletterList\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\ReportsPages\TournmentRevenuReport.cshtml" />
+    <None Include="Areas\Admin\Pages\Subscriptions\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\Subscriptions\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\SystemConfigration\ContactsInfo.cshtml" />
+    <None Include="Areas\Admin\Pages\SystemConfigration\EditPageContent.cshtml" />
+    <None Include="Areas\Admin\Pages\SystemConfigration\PagesContent.cshtml" />
+    <None Include="Areas\Admin\Pages\Tournaments\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\Tournaments\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\TrainerPlans\Add.cshtml" />
+    <None Include="Areas\Admin\Pages\TrainerPlans\Delete.cshtml" />
+    <None Include="Areas\Admin\Pages\TrainerPlans\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\TrainerPlans\Edit.cshtml" />
+    <None Include="Areas\Admin\Pages\TrainerPlans\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\TournamentPlans\Add.cshtml" />
+    <None Include="Areas\Admin\Pages\TournamentPlans\Delete.cshtml" />
+    <None Include="Areas\Admin\Pages\TournamentPlans\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\TournamentPlans\Edit.cshtml" />
+    <None Include="Areas\Admin\Pages\TournamentPlans\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\CampTargets\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\CampTypes\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\Countries\Add.cshtml" />
+    <None Include="Areas\Admin\Pages\Countries\Delete.cshtml" />
+    <None Include="Areas\Admin\Pages\Countries\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\Countries\Edit.cshtml" />
+    <None Include="Areas\Admin\Pages\Countries\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\CourseTargets\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\Error.cshtml" />
+    <None Include="Areas\Admin\Pages\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\CampPlans\Add.cshtml" />
+    <None Include="Areas\Admin\Pages\CampPlans\Delete.cshtml" />
+    <None Include="Areas\Admin\Pages\CampPlans\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\CampPlans\Edit.cshtml" />
+    <None Include="Areas\Admin\Pages\CampPlans\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\Sections\Add.cshtml" />
+    <None Include="Areas\Admin\Pages\Sections\Delete.cshtml" />
+    <None Include="Areas\Admin\Pages\Sections\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\Sections\Edit.cshtml" />
+    <None Include="Areas\Admin\Pages\Sections\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\Shared\_AdminFooter.cshtml" />
+    <None Include="Areas\Admin\Pages\Shared\_AdminHeader.cshtml" />
+    <None Include="Areas\Admin\Pages\Shared\_AdminLayout.cshtml" />
+    <None Include="Areas\Admin\Pages\Shared\_AdminSideNav.cshtml" />
+    <None Include="Areas\Admin\Pages\Shared\_CellTemplate.cshtml" />
+    <None Include="Areas\Admin\Pages\Shared\_EditCellTemplate.cshtml" />
+    <None Include="Areas\Admin\Pages\TournamentTargets\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\TournamentTypes\Index.cshtml" />
+    <None Include="Areas\Admin\Pages\Trainers\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\Trainers\Index.cshtml" />
+    <None Include="Areas\Admin\_ViewImports.cshtml" />
+    <None Include="Areas\Admin\_ViewStart.cshtml" />
+    <None Include="Pages\successCoursePayment.cshtml" />
+    <None Include="Pages\TrainerPayFaield.cshtml" />
+    <None Include="wwwroot\Public\fonts\la-brands-400.svg" />
+    <None Include="wwwroot\Public\fonts\la-regular-400.svg" />
+    <None Include="wwwroot\Public\fonts\la-solid-900.svg" />
+    <None Include="wwwroot\Public\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\Public\js\glightbox.min.js" />
+    <None Include="wwwroot\Public\js\gsap.min.js" />
+    <None Include="wwwroot\Public\js\main.js" />
+    <None Include="wwwroot\Public\js\overlay-scrollbars.min.js" />
+    <None Include="wwwroot\Public\js\swiper-bundle.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\successCoursePayment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Admin\Pages\ReportsPages\TournmentRevenuReport.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\successCoursePayment.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\TrainerPayFaield.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Admin\Pages\ReportsPages\TournmentRevenuReport.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\TrainerPayFaield.cshtml" />
+  </ItemGroup>
+</Project>

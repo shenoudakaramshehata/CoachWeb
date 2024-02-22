@@ -1,0 +1,45 @@
+﻿@page
+@model Coach.Areas.admin.Pages.AdminProfile.ChangeEmailModel
+@using DevExtreme.AspNet.Mvc
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Change Email"]
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <br />
+                        <form id="form" method="post">
+                            @(Html.DevExtreme().Form<Coach.Entities.ChangeEmailVM>()
+        .FormData(Model.ChangeEmailVM)
+        .Items(items =>
+        {
+
+
+            items.AddSimpleFor(m => m.NewEmail).IsRequired(true).Label(k => k.Text(sharedResource["New Email"])).Editor(e => e.TextBox().Mode(TextBoxMode.Email));
+            items.AddSimpleFor(m => m.ConfirmNewEmail).IsRequired(true).Label(k => k.Text(sharedResource["Confirm Email"])).Editor(e => e.TextBox().Mode(TextBoxMode.Email));
+
+            items.AddButton()
+                        .ColSpan(3)
+                        .HorizontalAlignment(HorizontalAlignment.Right)
+                        .ButtonOptions(b => b.Text(sharedResource["Save"])
+                        .Type(ButtonType.Success)
+                        .UseSubmitBehavior(true)).CssClass("invers");
+        })
+)
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@await Component.InvokeAsync("NToastNotify")
+

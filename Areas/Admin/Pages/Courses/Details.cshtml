@@ -1,0 +1,154 @@
+﻿@page
+@model Coach.Areas.Admin.Pages.Courses.DetailsModel
+@{
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Details"]
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+
+                        <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Informations"] </h4>
+                                    <hr />
+
+                                    <div class="d-flex justify-content-between">
+                                        <div> @sharedResource["TlAr"] </div>
+                                        <div> @Model.course.CourseTlAr </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.course.CourseTlEn </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Cost"]  </div>
+                                        <div> @Model.course.Cost </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["IsActive"]  </div>
+                                        @Html.CheckBoxFor(m => m.course.IsActive.Value, new { @disabled = "disabled" })
+
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Picture"]  </div>
+                                        <div class="Details_img">
+                                            <img style="border-radius: 13%;" class="img-fluid" src="~/Images/Course/@Model.course.Pic" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Description"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["DescAr"]  </div>
+                                        <div> @Model.course.CourseDescAr </div>
+                                    </div>
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["DescEn"]  </div>
+                                        <div> @Model.course.CourseDescEn </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Trainer"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlAr"]  </div>
+                                        <div> @Model.course.Trainer.FullNameAr </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.course.Trainer.FullNameEn </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["CourseTarget"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlAr"]  </div>
+                                        <div> @Model.course.CourseTarget.CourseTargetTlAr </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.course.CourseTarget.CourseTargetTlAr  </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4>@sharedResource["CourseImages"] </h4>
+                                    <hr />
+
+                                    <div class="row" style="margin-top:25px" id="images_container">
+                                        <div class="col-12">
+
+                                            <div id="Course_Images" class="d-flex justify-content-center align-items-center">
+                                                <div class="loader">Loading...</div>
+                                                <div class="message d-none"> There Are No Images For This Item </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+      window.addEventListener('load', (event) => {
+
+        fetch('http://' + location.host + '/Api/CourseImages/GetImages?id=' + window.location.search.split("=")[1])
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                var Course_Images = document.getElementById("Course_Images");
+                                    document.getElementsByClassName("loader")[0].remove();
+
+
+                for (const property in data) {
+                    console.log(data[property]);
+                    var img = document.createElement("img");
+                    img.src = "/Images/Course/" + data[property].Pic;
+                    img.width = 150;
+                    img.classList.add("m-3");
+                    var div = document.createElement("div");
+                    div.classList.add("position-relative");
+                    div.classList.add(data[property].CourseImageId);
+                    div.appendChild(img);
+                   
+                    Course_Images.appendChild(div);
+
+                }
+
+                if(data.length <= 0 ){
+                    document.getElementsByClassName("message")[0].classList.remove("d-none");
+                }
+
+             });
+
+      });
+
+
+      
+
+</script>

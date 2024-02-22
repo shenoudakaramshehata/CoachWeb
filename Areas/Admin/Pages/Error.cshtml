@@ -1,0 +1,28 @@
+﻿@page
+@model Coach.Areas.Admin.Pages.ErrorModel
+@{
+}
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="ex-page-content text-center">
+                            <h1 class="">404!</h1>
+                            <h3 class="">
+                                @sharedResource["NotFound"]
+                            </h3><br>
+                            <a asp-page="Index" class="btn btn-primary mb-5 waves-effect waves-light"> @sharedResource["Back"]</a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div> <!-- container-fluid -->
+</div>

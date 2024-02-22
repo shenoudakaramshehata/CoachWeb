@@ -1,0 +1,67 @@
+﻿@page
+@model Coach.Pages.SubscriptionPayFaieldModel
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <title>International Coach</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="Admin/assets/images/index.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="Admin/assets/images/index.jpg">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/fb2a8bbabd.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            text-align: center;
+            padding: 40px 0;
+            background: #EBF0F5;
+        }
+
+        h1 {
+            color: red;
+            font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+            font-weight: 900;
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #404F5E;
+            font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+            font-size: 20px;
+            margin: 0;
+        }
+
+        i {
+            color: red;
+            font-size: 100px;
+            line-height: 200px;
+            /*margin-left: -15px;
+                    */ padding-top: 3rem
+        }
+
+        .card {
+            background: white;
+            padding: 60px;
+            border-radius: 4px;
+            box-shadow: 0 2px 3px #C8D0D8;
+            display: inline-block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;text-align:center">
+            @*<i class="checkmark">X</i>*@
+            <i class="fas fa-times "></i>
+        </div>
+        <h1>Failed</h1>
+        <p>
+            Oops! Something went wrong ;<br /> While trying to reserve money from your account!
+        </p>
+    </div>
+</body>
+</html>
+

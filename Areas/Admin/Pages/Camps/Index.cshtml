@@ -1,0 +1,112 @@
+﻿@page
+@model Coach.Areas.Admin.Pages.Camps.IndexModel
+@{
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Camps"]
+@*                            <a asp-page="Add" class="btn btn-primary">@sharedResource["Add"]  @sharedResource["Camp"]  </a>
+*@                        </h2>
+                    </div>
+                    <div class="card-body">
+
+
+
+
+                        @(Html.DevExtreme().DataGrid<Coach.Models.Camp>()
+                        .ID("gridContainer")
+
+                        .DataSource(Model.campList)
+                        .Columns(columns => {
+         columns.AddFor(m => m.Pic)
+            .Width(100)
+            .AllowFiltering(false)
+            .AllowSorting(false)
+            .CellTemplate(@<text>
+                <div>
+                                        <img width="100" height="50" src="/<%- value %>" alt=" Camp image"/>
+                </div>
+            </text>).Caption(sharedResource["Picture"]).Width(200);
+
+                        @*columns.AddFor(m => m.CampTlAr).Caption(sharedResource["TlAr"]).Visible(bool.Parse(sharedResource["ArLang"]));*@
+                        columns.AddFor(m => m.CampTlEn).Caption(sharedResource["TlEn"]).Visible(!bool.Parse(sharedResource["ArLang"]));
+                       @* columns.AddFor(m => m.StartDate).Caption(sharedResource["StartDate"]);
+                        columns.AddFor(m => m.EndDate).Caption(sharedResource["EndDate"]);
+                        columns.AddFor(m => m.IsActive).Caption(sharedResource["IsActive"]);*@
+                        columns.AddFor(m => m.Cost).Caption(sharedResource["Cost"]);
+                        columns.AddFor(m => m.CampTargetId).Lookup(lookup => lookup
+                       .DataSource(ds => ds.WebApi().Controller("Camps").LoadAction("CampTargetLookup").Key("Value"))
+                       .ValueExpr("Value")
+                       .DisplayExpr("Text")
+                       ).Caption(sharedResource["Target"]);
+                        columns.AddFor(m => m.CampTypeId).Lookup(lookup => lookup
+                         .DataSource(ds => ds.WebApi().Controller("Camps").LoadAction("CampTypeLookup").Key("Value"))
+                   .ValueExpr("Value")
+                   .DisplayExpr("Text")
+                   ).Caption(sharedResource["Type"]);
+
+                        columns.AddFor(m => m.CountryId).Lookup(lookup => lookup
+                           .DataSource(ds => ds.WebApi().Controller("Camps").LoadAction("CountryLookup").Key("Value"))
+                     .ValueExpr("Value")
+                     .DisplayExpr("Text")
+                     ).Caption(sharedResource["Country"]);
+
+                             @*columns.AddFor(m => m.CampPlanId).Lookup(lookup => lookup
+                           .DataSource(ds => ds.WebApi().Controller("Camps").LoadAction("CampPlansLookup").Key("Value"))
+                     .ValueExpr("Value")
+                     .DisplayExpr("Text")
+                     ).Caption(sharedResource["Plan"]).Width(100);*@
+
+                            @* columns.AddFor(m => m.UserId).Lookup(lookup => lookup
+                           .DataSource(ds => ds.WebApi().Controller("Camps").LoadAction("UsersLookup").Key("Value"))
+                     .ValueExpr("Value")
+                     .DisplayExpr("Text")
+                     ).Caption(sharedResource["User"]).Width(100);*@
+
+
+
+                        columns.Add().Caption(sharedResource["Actions"]).Width(200).Alignment(HorizontalAlignment.Center).CellTemplate(@<text>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-primary btn-sm"  href="/Admin/Camps/Details?id=<%- data.CampId %>"> <i class="fas fa-eye"></i> </a>
+                            </div>
+                            </text>);
+                        })
+                       .Paging(paging => paging.PageSize(10))
+                        .Pager(pager =>
+                        {
+                            pager.Visible(true);
+                            pager.DisplayMode(GridPagerDisplayMode.Full);
+                            pager.ShowPageSizeSelector(true);
+                            pager.AllowedPageSizes(new JS("[5, 10, 'all']"));
+                            pager.ShowInfo(true);
+                            pager.ShowNavigationButtons(true);
+
+                        })
+                        .HeaderFilter(headerFilter => headerFilter.Visible(true)).ShowColumnLines(false)
+                        .ShowRowLines(true)
+                        .RowAlternationEnabled(true)
+                        .AllowColumnReordering(true)
+                        .ShowRowLines(true)
+                       .ShowColumnLines(true)
+
+                        .ShowBorders(true)
+                        .SearchPanel(searchPanel => searchPanel
+                        .Visible(true)
+                        .Width(240)
+                        .Placeholder(sharedResource["SearchTxt"]))
+                        .RemoteOperations(true)
+                        .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                                        )
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

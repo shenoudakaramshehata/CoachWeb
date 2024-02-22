@@ -1,0 +1,99 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Coach.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+
+<header id="page-topbar">
+    <div class="navbar-header">
+        <div class="d-flex">
+            <!-- LOGO -->
+                @*<div class="navbar-brand-box">
+                    <a href="index.html" class="logo logo-dark">
+                        <span class="logo-sm">
+                            <img src="/Admin/assets/images/logo.png" alt="" height="22">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="/Admin/assets/images/logo-dark.png" alt="" height="17">
+                        </span>
+                    </a>
+
+                    <a href="index.html" class="logo logo-light">
+                        <span class="logo-sm">
+                            <img src="/Admin/assets/images/logo-light.png" alt="" height="22">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="/Admin/assets/images/logo-light.png" alt="" height="36">
+                        </span>
+                    </a>
+                </div>*@
+
+            <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
+                <i class="mdi mdi-menu"></i>
+            </button>
+
+            <div class="d-none d-sm-block ms-2">
+                <h4 class="page-title">@sharedResource["Dashboard"] </h4>
+            </div>
+        </div>
+
+        
+
+        <div class="d-flex">
+
+
+
+            <div class="dropdown d-none d-md-block me-2">
+                <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="font-size-16">@sharedResource["Language"]   </span> <img asp-coto class="ms-2" src="/Admin/assets/images/flags/us_flag.jpg" alt="Header Language" height="16">
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a asp-controller="Setting" asp-action="ChangeLanguage" asp-route-culture="en-US" asp-route-url="@Context.Request.Path@Context.Request.QueryString.ToString()"  class="dropdown-item notify-item">
+                        <img src="/Admin/assets/images/flags/us_flag.jpg" alt="user-image" height="12"> <span class="align-middle"> English </span>
+                    </a>
+
+                    <!-- item-->
+                    <a asp-controller="Setting" asp-action="ChangeLanguage" asp-route-culture="ar-EG" asp-route-url="@Context.Request.Path@Context.Request.QueryString.ToString()" class="dropdown-item notify-item">
+                        <img width="18" height="18"  src="/Admin/assets/images/flags/language-6.png" alt="user-image" > <span class="align-middle"> اللغة العربية  </span>
+                    </a>
+
+                  @*  <!-- item-->
+                    <a asp-controller="Setting" asp-action="ChangeLanguage" asp-route-culture="en-US" asp-route-url="@Context.Request.Path@Context.Request.QueryString.ToString()"  class="dropdown-item notify-item">
+                        <img src="/Admin/assets/images/flags/us_flag.jpg" alt="user-image" height="12"> <span class="align-middle"> English </span>
+                    </a>
+
+                    <!-- item-->
+                    <a asp-controller="Setting" asp-action="ChangeLanguage" asp-route-culture="ar-EG" asp-route-url="@Context.Request.Path@Context.Request.QueryString.ToString()" class="dropdown-item notify-item">
+                        <img width="18" height="18"  src="/Admin/assets/images/flags/language-6.png" alt="user-image" > <span class="align-middle"> اللغة العربية  </span>
+                    </a>*@
+
+                    
+                </div>
+            </div>
+
+           
+
+            <div class="dropdown d-inline-block">
+                <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span>@sharedResource["Hello"] @User.Identity.Name</span>
+                    <img class="rounded-circle header-profile-user" src="/Admin/assets/images/users/avatar-1.jpg" alt="Header Avatar">
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a asp-area="Admin" asp-page="/AdminProfile/ChangeEmail" class="dropdown-item text-danger">@sharedResource["Change Email"] </a>
+                    <a asp-area="Admin" asp-page="/AdminProfile/ChangeAdminPassword" class="dropdown-item text-danger">@sharedResource["Change Password"] </a>
+                    <a asp-controller="Setting" asp-action="Logout" class="dropdown-item text-danger">@sharedResource["Logout"] </a>
+
+                </div>
+               
+            </div>
+
+
+        </div>
+    </div>
+</header>
+

@@ -1,0 +1,259 @@
+﻿@page
+@model Coach.Areas.Admin.Pages.Tournaments.DetailsModel
+@{
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Details"]
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+
+                        <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Informations"] </h4>
+                                    <hr />
+
+                                    <div class="d-flex justify-content-between">
+                                        <div> @sharedResource["TlAr"] </div>
+                                        <div> @Model.tournament.TournamentTlAr </div>
+                                    </div>
+                                    <br/>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.tournament.TournamentTlAr </div>
+                                    </div>
+                                     <br/>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Cost"]  </div>
+                                        <div> @Model.tournament.Cost </div>
+                                    </div>
+
+                                     <br/>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["IsActive"]  </div>
+                                        @Html.CheckBoxFor(m => m.tournament.IsActive.Value, new { @disabled = "disabled" })
+
+                                    </div>
+                                     <br/>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Picture"]  </div>
+                                        <div class="Details_img">
+                                            <img style="border-radius: 13%;" class="img-fluid" src="~/@Model.tournament.Pic" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Description"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["DescAr"]  </div>
+                                        <div> @Model.tournament.TournamentDescAr </div>
+                                    </div>
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["DescEn"]  </div>
+                                        <div> @Model.tournament.TournamentDescEn </div>
+                                    </div>
+                                    @if( @Model.tournament.StartDate!=null){
+                                         <br/>
+                                          <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Tournament Start Date"]  </div>
+                                        <div> @Model.tournament.StartDate.Value.ToShortDateString() </div>
+                                    </div>
+                                    }
+                                    @if( @Model.tournament.EndDate!=null){
+                                         <br/>
+                                        <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Tournament End Date"]  </div>
+                                        <div> @Model.tournament.EndDate.Value.ToShortDateString() </div>
+                                    </div>
+                                    }
+                                  
+                                   
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Target"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlAr"]  </div>
+                                        <div> @Model.tournament.TournamentTarget.TournamentTargetTlAr </div>
+                                    </div>
+                                     <br/>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.tournament.TournamentTarget.TournamentTargetTlEn </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Type"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlAr"]  </div>
+                                        <div> @Model.tournament.TournamentType.TournamentTypeTlAr </div>
+                                    </div>
+                                     <br/>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.tournament.TournamentType.TournamentTypeTlEn</div>
+
+
+                                    </div>
+                                     <br/>
+                                </div>
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["User"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Email"]  </div>
+                                        <div> @Model.user.Email </div>
+                                    </div>
+                                     <br/>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Mobile"]  </div>
+                                        <div> @Model.user.PhoneNumber </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Plan"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlAr"]  </div>
+                                        <div> @Model.tournament.TournamentPlan.PlanTlAr </div>
+                                    </div>
+                                     <br/>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.tournament.TournamentPlan.PlanTlEn</div>
+
+
+                                    </div>
+                                     <br/>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["DurationInMonth"]  </div>
+                                        <div> @Model.tournament.TournamentPlan.DurationInMonth</div>
+
+
+                                    </div>
+                                    @if(@Model.tournament.SubStartDate!=null){
+                                         <br/>
+                                         <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["StartDate"]  </div>
+                                        <div> @Model.tournament.SubStartDate.Value.ToShortDateString()</div>
+
+
+                                    </div>
+                                    }
+                                     @if(@Model.tournament.SubEndDate!=null){
+                                          <br/>
+                                        <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["EndDate"]  </div>
+                                        <div> @Model.tournament.SubEndDate.Value.ToShortDateString()</div>
+
+
+                                    </div>
+                                    }
+                                   
+                                   <br/>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Price"]  </div>
+                                        <div> @Model.tournament.SubPrice</div>
+
+
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-12 col-lg-12 mt-8">
+                                        <h4>@sharedResource["TournamentImages"] </h4>
+                                        <hr />
+
+                                        <div class="row" style="margin-top:25px" id="images_container">
+                                            <div class="col-12">
+
+                                                <div id="Tournament_Images" class="d-flex justify-content-center align-items-center">
+                                                    <div class="loader">Loading...</div>
+                                                    <div class="message d-none">
+                                                        <img src="/Images/Tournament/bafaadf3-5633-407a-97f7-b1b41b74345f.jpg" width="150" class="m-3">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                    </div>
+                     @{
+                                if (Model.tournament.PaymentMethodId==1&&Model.tournament.ispaid==false)
+                                {
+                                    <div class="row">
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Tournament Pay"] </h4>
+                                    <hr />
+                                    <div class="customer_info_container d-flex justify-content-between">
+                               
+                                <form id="form" method="post"  asp-route-id="@Model.tournament.TournamentId" enctype="multipart/form-data">      
+                                    <input type="submit" value="@sharedResource["pay"]" class="btn btn-primary">
+                                </form>        
+                                    </div>
+                                   </div>
+                               </div>
+                                }
+                            }
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        window.addEventListener('load', (event) => {
+
+            fetch('http://' + location.host + '/Api/Tournaments/GetImages?id=' + window.location.search.split("=")[1])
+                .then(response => response.json())
+                .then(data => {
+
+                    var Tournament_Images = document.getElementById("Tournament_Images");
+                    document.getElementsByClassName("loader")[0].remove();
+
+
+                    for (const property in data) {
+
+                        var img = document.createElement("img");
+                        img.src = "/" + data[property].Pic;
+                        img.width = 150;
+                        img.classList.add("m-3");
+                        var div = document.createElement("div");
+                        div.classList.add("position-relative");
+                        div.classList.add(data[property].TournamentImageId);
+                        div.appendChild(img);
+                        Tournament_Images.appendChild(div);
+                    }
+                    if (data.length <= 0) {
+                        document.getElementsByClassName("message")[0].classList.remove("d-none");
+                    }
+
+                });
+        });
+    </script>

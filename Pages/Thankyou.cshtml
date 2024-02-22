@@ -1,0 +1,32 @@
+﻿@page
+@model Coach.Pages.ThankyouModel
+@{
+
+    ViewData["Title"] = "Thank You";
+}
+
+    
+      <link rel="icon" type="image/png" sizes="32x32" href="Admin/assets/images/index.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="Admin/assets/images/index.jpg">
+   <link rel="stylesheet" href="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/default_thank_you.css">
+    
+    <style>
+  .navigation-menu .parent>li>a>span {
+      font-size: 0.8rem;
+  }
+ .link-underline>span {
+    font-size: 1.1rem;
+ }
+    </style>
+
+
+     <header class="site-header" id="header" style="padding-top: 17rem;" >
+        <h1 class="site-header__title" data-lead-id="site-header-title">@sharedResource["THANK YOU!"]</h1>
+    </header>
+
+    <div class="main-content">
+        <i class="fa fa-check main-content__checkmark" id="checkmark"></i>
+        <p class="main-content__body" data-lead-id="main-content-body">@sharedResource["The registration process has been successful. Thank you for registering on the nursery website"]</p>
+    </div>
+
+  

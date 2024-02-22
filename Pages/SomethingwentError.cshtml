@@ -1,0 +1,36 @@
+﻿@page
+@model Coach.Pages.SomethingwentErrorModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coach</title>
+    
+        
+        <link rel="stylesheet" href="StyleSheet.css" >
+    
+</head>
+<body>
+    <div class="errorModule">
+        <div class="errorIcon">
+            <i class="fa fa-unlink"></i>
+        </div>
+        @{ if (Model.ErrorMessage != null)
+            {
+                <div class="errorMsg">
+                @Model.ErrorMessage</div>
+            }
+            else
+            {
+                <div class="errorMsg">Oops! Something went Wrong. Try Again</div>
+            }
+        }
+
+    </div>
+
+</body>
+</html>
+
+

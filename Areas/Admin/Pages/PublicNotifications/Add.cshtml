@@ -1,0 +1,272 @@
+﻿@page
+@model Coach.Areas.Admin.Pages.PublicNotifications.AddModel
+@{
+}
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Add"]  @sharedResource["PublicNotification"]
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="form" method="post" enctype="multipart/form-data">
+                            @Html.Hidden("EntityId", "")
+                            @(Html.DevExtreme().Form<Coach.Models.PublicNotification>()
+
+    .ID("PublicNotificationForm")
+     .OnInitialized("onFormInitialized")
+.Items(items => {
+    items.AddSimpleFor(m => m.CountryId).IsRequired(true).Label(k => k.Text(sharedResource["Country"]))
+               .Editor(e => e
+                   .Lookup()
+                   .ID("contrylookup")
+                   .DataSource(ds => ds.WebApi().Controller("PublicNotifications").LoadAction("CountryLookup").Key("Value"))
+                   .ValueExpr("Value")
+                   .DisplayExpr("Text")
+                    .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                    //.OnValueChanged("CountryChange")
+                       .Placeholder(sharedResource["Select"])
+                                                        .ShowClearButton(true)
+                                                        .ClearButtonText(sharedResource["Clear"])
+                                                        .CancelButtonText(sharedResource["Cancel"])
+                                                        .SearchPlaceholder(sharedResource["searching"])
+               );
+    items.AddSimpleFor(m => m.Title).IsRequired(true).Label(k => k.Text(sharedResource["Title"]));
+    items.AddSimpleFor(m => m.Body).IsRequired(true).Label(k => k.Text(sharedResource["Body"])).Editor(c => c.TextArea().Height(150));
+
+    items.AddSimpleFor(m => m.EntityTypeId).IsRequired(true).Label(k => k.Text(sharedResource["Type"]))
+        .Editor(e => e
+            .Lookup()
+            .DataSource(ds => ds.WebApi().Controller("PublicNotifications").LoadAction("EntityTypeLookup").Key("Value"))
+            .ValueExpr("Value")
+            .DisplayExpr("Text")
+             .OnValueChanged("onValueChanged")
+                 .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                    .Placeholder(sharedResource["Select"])
+                                                        .ShowClearButton(true)
+                                                        .ClearButtonText(sharedResource["Clear"])
+                                                        .CancelButtonText(sharedResource["Cancel"])
+                                                        .SearchPlaceholder(sharedResource["searching"])
+             );
+
+
+
+
+    items.AddSimple().IsRequired(true)
+            .Editor(e => e
+                .Lookup()
+                .ID("camplookup")
+                 .DataSource(ds => ds.WebApi().Controller("PublicNotifications").LoadAction("CampLookup").Key("Value"))
+          .DisplayExpr("Text")
+            .ValueExpr("Value")
+      .OnSelectionChanged("CampValueChanged")
+                     .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                        .Placeholder(sharedResource["Select"])
+                                                        .ShowClearButton(true)
+                                                        .ClearButtonText(sharedResource["Clear"])
+                                                        .CancelButtonText(sharedResource["Cancel"])
+                                                        .SearchPlaceholder(sharedResource["searching"])
+                 ).Label(k => k.Text(sharedResource["Camp"])).Name("Camp").Visible(false).IsRequired(true);
+
+    items.AddSimple().IsRequired(true)
+            .Editor(e => e
+                .Lookup()
+                .ID("tournamentlookup")
+                 .DataSource(ds => ds.WebApi().Controller("PublicNotifications").LoadAction("TournamentLookup").Key("Value"))
+          .DisplayExpr("Text")
+            .ValueExpr("Value")
+      .OnSelectionChanged("TournamentValueChanged")
+                     .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                        .Placeholder(sharedResource["Select"])
+                                                        .ShowClearButton(true)
+                                                        .ClearButtonText(sharedResource["Clear"])
+                                                        .CancelButtonText(sharedResource["Cancel"])
+                                                        .SearchPlaceholder(sharedResource["searching"])
+                 ).Label(k => k.Text(sharedResource["Tournament"])).Name("Tournament").Visible(false).IsRequired(true);
+    items.AddSimple().IsRequired(true)
+            .Editor(e => e
+                .Lookup()
+                .ID("courselookup")
+                 .DataSource(ds => ds.WebApi().Controller("PublicNotifications").LoadAction("CourseLookup").Key("Value"))
+          .DisplayExpr("Text")
+            .ValueExpr("Value")
+      .OnSelectionChanged("CourseValueChanged")
+                     .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                        .Placeholder(sharedResource["Select"])
+                                                        .ShowClearButton(true)
+                                                        .ClearButtonText(sharedResource["Clear"])
+                                                        .CancelButtonText(sharedResource["Cancel"])
+                                                        .SearchPlaceholder(sharedResource["searching"])
+                 ).Label(k => k.Text(sharedResource["Course"])).Name("Course").Visible(false).IsRequired(true);
+
+    items.AddButton()
+  .ColSpan(3)
+  .HorizontalAlignment(HorizontalAlignment.Right)
+  .ButtonOptions(b => b.Text(sharedResource["Save"])
+  .Type(ButtonType.Success)
+  .UseSubmitBehavior(true)).CssClass("invers");
+})
+                            )
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var form
+    var countryId
+    function onFormInitialized(e) {
+        form = e.component;
+    }
+
+     function CampValueChanged(data) {
+        if(data.selectedItem!=null){
+            $("#EntityId").val(data.selectedItem.Value);
+        }
+        
+    }
+
+    function TournamentValueChanged(data) {
+         if(data.selectedItem!=null){
+          $("#EntityId").val(data.selectedItem.Value);
+        }
+        
+    }
+
+    function CourseValueChanged(data) {
+           if(data.selectedItem!=null){
+          $("#EntityId").val(data.selectedItem.Value);
+        }
+       
+    }
+
+    function TrainerValueChanged(data) {
+             if(data.selectedItem!=null){
+         $("#EntityId").val(data.selectedItem.Value);
+        }
+        
+    }
+
+    function onValueChanged(e) {
+
+        if (e.value === 2) {
+     
+            form.itemOption("Camp", "visible", true);
+            form.itemOption("Tournament", "visible", false);
+            form.itemOption("Course", "visible", false);
+            /*if(countryId!=null)
+            {
+               
+            $.ajax({
+
+                type: "GET",
+                url: "/Add?handler=FillCampList",
+                data: { "values": countryId },
+                contentType: "application/json",
+                dataType: "json",
+                success: function (response) {
+                    console.log("List camps" + response)
+                    var campLock = $("#camplookup").dxLookup("instance");
+                    console.log(campLock)
+                    campLock.option("dataSource", response)
+                    campLock.refresh()
+
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+
+            }*/
+          
+        }
+
+        if (e.value === 3) {
+            form.itemOption("Camp", "visible", false);
+            form.itemOption("Tournament", "visible", true);
+            form.itemOption("Course", "visible", false);
+           /* if(countryId!=null)
+            {
+               
+            $.ajax({
+
+                type: "GET",
+                url: "/Add?handler=FillTournamentList",
+                data: { "values": countryId },
+                contentType: "application/json",
+                dataType: "json",
+                success: function (response) {
+                    console.log("List tournaments" + response)
+                    var tourLock = $("#tournamentlookup").dxLookup("instance");
+                    console.log(tourLock)
+                    tourLock.option("dataSource", response)
+                    tourLock.refresh()
+
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+
+            }*/
+          
+        
+        } 
+        if (e.value === 4) {
+          
+            form.itemOption("Camp", "visible", false);
+            form.itemOption("Tournament", "visible", false);
+            form.itemOption("Course", "visible", true);
+           /* if(countryId!=null)
+            {
+               
+            $.ajax({
+
+                type: "GET",
+                url: "/Add?handler=FillCourseList",
+                data: { "values": countryId },
+                contentType: "application/json",
+                dataType: "json",
+                success: function (response) {
+                    console.log("List course" + response)
+                    var courseLock = $("#courselookup").dxLookup("instance");
+                    console.log(courseLock)
+                    courseLock.option("dataSource", response)
+                    courseLock.refresh()
+
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+
+            }*/
+          
+        
+        }
+    
+
+
+
+    }
+
+    function CountryChange()
+    {
+         var CountryLock = $("#contrylookup").dxLookup("instance");
+        var Selectedcountry = CountryLock.option("selectedItem");
+        console.log(Selectedcountry)
+        if (Selectedcountry != null) {
+            countryId=Selectedcountry.Value
+        }
+    }
+
+
+</script>
